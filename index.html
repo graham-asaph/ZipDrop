@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ZipDrop is a browser-based ZIP compression app that runs fully client-side." />
+    <title>ZipDrop - Compress. Save. Share.</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <div>
+            <h1>ZipDrop</h1>
+            <p class="tagline">Compress. Save. Share.</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        Toggle Theme
+      </button>
+    </header>
+
+    <main class="layout">
+        <section class="panel" aria-labelledby="fileSelectionTitle">
+            <h2 id="fileSelectionTitle">Select Files</h2>
+
+            <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drag and drop files here">
+                <p>Drag and drop files here</p>
+                <p class="drop-zone-hint">or</p>
+                <button id="selectFilesBtn" class="btn" type="button">Select Files</button>
+                <input id="fileInput" type="file" multiple hidden />
+            </div>
+
+            <div class="file-tools">
+                <label for="outputName">Output ZIP name</label>
+                <input id="outputName" type="text" value="zipdrop-archive" maxlength="80" />
+
+                <label for="passwordInput">Optional password (not implemented)</label>
+                <input id="passwordInput" type="password" placeholder="Browser ZIP password support is limited" />
+                <p class="inline-note">
+                    Password-protected ZIP creation is not included in this browser MVP.
+                </p>
+            </div>
+
+            <div class="file-summary">
+                <span id="fileCount">0 files</span>
+                <span id="totalSize">0 B</span>
+            </div>
+
+            <ul id="selectedFilesList" class="file-list" aria-live="polite"></ul>
+
+            <div class="actions">
+                <button id="compressBtn" class="btn btn-primary" type="button" disabled>
+            Compress to ZIP
+          </button>
+                <button id="clearBtn" class="btn btn-ghost" type="button" disabled>
+            Clear
+          </button>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="resultsTitle">
+            <h2 id="resultsTitle">Output & Preview</h2>
+
+            <div id="errorBanner" class="banner banner-error hidden" role="alert"></div>
+            <div id="successBanner" class="banner banner-success hidden" role="status"></div>
+
+            <div class="progress-wrap" aria-live="polite">
+                <div class="progress-label-row">
+                    <span>Compression progress</span>
+                    <span id="progressText">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div id="compressionStats" class="stats hidden">
+                <h3>Compression Stats</h3>
+                <p><strong>Original Size:</strong> <span id="originalSize">0 B</span></p>
+                <p><strong>ZIP Size:</strong> <span id="zipSize">0 B</span></p>
+                <p><strong>Saved:</strong> <span id="savedPercent">0%</span></p>
+                <p><strong>File:</strong> <span id="zipFileName">-</span></p>
+            </div>
+
+            <div class="actions">
+                <button id="shareBtn" class="btn" type="button" disabled>Share ZIP</button>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="unzip-section">
+                <h3>Open Existing ZIP</h3>
+                <button id="openZipBtn" class="btn" type="button">Open ZIP</button>
+                <input id="zipInput" type="file" accept=".zip,application/zip" hidden />
+                <ul id="zipEntriesList" class="file-list" aria-live="polite"></ul>
+                <button id="extractAllBtn" class="btn btn-primary" type="button" disabled>
+            Extract All
+          </button>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
