@@ -1,4 +1,4 @@
-:root {
+gb:root {
     --bg: #f4f7fb;
     --bg-accent: radial-gradient(circle at 20% 0%, #ffffff 0%, #f4f7fb 52%, #e7eef9 100%);
     --surface: #ffffff;
@@ -8,8 +8,8 @@
     --primary: #1d63ff;
     --primary-strong: #0b4fe8;
     --primary-contrast: #ffffff;
-    --border: #d8e1ef;
-    --border-strong: #bdcade;
+    --border: #d0d0d0;
+    --border-strong: #b0b0b0;
     --danger: #c7314d;
     --danger-bg: #ffe8ed;
     --success: #1f8a49;
@@ -44,7 +44,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: "Segoe UI", "Avenir Next", "Trebuchet MS", sans-serif;
+    font-family: "Inter", "Segoe UI", "Avenir Next", "Trebuchet MS", sans-serif;
     background: var(--bg-accent);
     color: var(--text);
     min-height: 100%;
@@ -53,6 +53,14 @@ body {
 
 body {
     padding: 1rem;
+}
+
+button,
+input,
+select,
+textarea,
+.btn {
+    font-family: inherit;
 }
 
 .app-header {
